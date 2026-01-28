@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthForm from "./components/AuthForm";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 import DateFilter from "./components/DateFilter";
 import { api, clearToken, getToken } from "./api/client";
+import './App.css'
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -12,6 +13,8 @@ export default function App() {
   const [filter, setFilter] = useState({ start: "", end: "" });
 
   async function loadExpenses(params = {}) {
+    console.log("here");
+
     setError("");
     try {
       const data = await api.getExpenses(params);
@@ -25,6 +28,13 @@ export default function App() {
     setUser(userData);
     loadExpenses(); // load ONLY after login/register
   }
+
+  useEffect(() => {
+    async function run() {
+      await loadExpenses();
+    }
+    run();
+  }, [])
 
   function logout() {
     clearToken();
@@ -84,14 +94,63 @@ export default function App() {
     </div>
   );
 }
-
 const styles = {
-  page: { minHeight: "100vh", placeItems: "start center", padding: 20 },
-  container: { width: "100%", maxWidth: 980, display: "grid", gap: 16 },
-  topRow: { display: "flex", justifyContent: "space-between", alignItems: "center" },
-  logout: { padding: 10, borderRadius: 8, border: "1px solid #ccc", cursor: "pointer" },
-  layout: { display: "grid", gridTemplateColumns: "360px 1fr", gap: 16 },
-  left: { display: "grid", gap: 16 },
-  right: { padding: 16, border: "1px solid #ddd", borderRadius: 10 },
-  error: { color: "crimson", marginBottom: 10 }
+  page: {
+    minHeight: "100vh",
+    width: "80vw",
+    // display: "flex",
+    marginLeft: 'auto',
+    alignSelf: 'center',
+    justifyContent: "center",
+
+    padding: 24
+
+  },
+
+  container: {
+    width: "100%",
+    maxWidth: "1400px",
+    display: "flex",
+    flexDirection: "column",
+    gap: 20
+  },
+
+  topRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+
+  logout: {
+    padding: "10px 14px",
+    borderRadius: 8,
+    border: "1px solid #ccc",
+    cursor: "pointer"
+  },
+
+  layout: {
+    display: "grid",
+    gridTemplateColumns: "320px 1fr",
+    gap: 20,
+    alignItems: "start"
+  },
+
+  left: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 16
+  },
+
+  right: {
+    padding: 20,
+    border: "1px solid #ddd",
+    borderRadius: 12,
+    background: "#fff",
+    minHeight: "70vh"
+  },
+
+  error: {
+    color: "crimson",
+    marginBottom: 10
+  }
 };
