@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AuthForm from "./components/AuthForm";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
@@ -9,7 +9,6 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [expenses, setExpenses] = useState([]);
   const [error, setError] = useState("");
-
   const [filter, setFilter] = useState({ start: "", end: "" });
 
   async function loadExpenses(params = {}) {
@@ -22,12 +21,10 @@ export default function App() {
     }
   }
 
-  useEffect(() => {
-    // if token exists, try load expenses
-    if (getToken()) {
-      loadExpenses();
-    }
-  }, []);
+  function onAuthSuccess(userData) {
+    setUser(userData);
+    loadExpenses(); // load ONLY after login/register
+  }
 
   function logout() {
     clearToken();
@@ -41,7 +38,7 @@ export default function App() {
         <h1 style={{ marginTop: 0 }}>Expense Tracker</h1>
 
         {!getToken() ? (
-          <AuthForm onAuth={(u) => { setUser(u); loadExpenses(); }} />
+          <AuthForm onAuth={onAuthSuccess} />
         ) : (
           <>
             <div style={styles.topRow}>
@@ -55,13 +52,23 @@ export default function App() {
 
             <div style={styles.layout}>
               <div style={styles.left}>
-                <ExpenseForm onAdded={() => loadExpenses(filter.start || filter.end ? filter : {})} />
+                <ExpenseForm
+                  onAdded={() =>
+                    loadExpenses(filter.start || filter.end ? filter : {})
+                  }
+                />
+
                 <DateFilter
                   start={filter.start}
                   end={filter.end}
                   onChange={setFilter}
-                  onApply={() => loadExpenses(filter.start || filter.end ? filter : {})}
-                  onClear={() => { setFilter({ start: "", end: "" }); loadExpenses(); }}
+                  onApply={() =>
+                    loadExpenses(filter.start || filter.end ? filter : {})
+                  }
+                  onClear={() => {
+                    setFilter({ start: "", end: "" });
+                    loadExpenses();
+                  }}
                 />
               </div>
 
