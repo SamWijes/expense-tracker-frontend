@@ -86,7 +86,7 @@ export default function App() {
 }
 
 const styles = {
-  page: { minHeight: "100vh", display: "grid", placeItems: "start center", padding: 20 },
+  page: { minHeight: "100vh", placeItems: "start center", padding: 20 },
   container: { width: "100%", maxWidth: 980, display: "grid", gap: 16 },
   topRow: { display: "flex", justifyContent: "space-between", alignItems: "center" },
   logout: { padding: 10, borderRadius: 8, border: "1px solid #ccc", cursor: "pointer" },

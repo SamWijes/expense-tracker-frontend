@@ -75,7 +75,7 @@ export default function ExpenseForm({ onAdded }) {
 }
 
 const styles = {
-  card: { padding: 16, border: "1px solid #ddd", borderRadius: 10 },
+  card: {display:"flex",flexDirection:"column", padding: 16, border: "1px solid #ddd", borderRadius: 10 },
   form: { display: "grid", gap: 10 },
   input: { padding: 10, borderRadius: 8, border: "1px solid #ccc" },
   button: { padding: 10, borderRadius: 8, border: "none", cursor: "pointer" },
