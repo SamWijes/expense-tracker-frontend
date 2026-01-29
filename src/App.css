@@ -1,4 +1,84 @@
 body{
-    display: flex;
+  display: flex;
+  width: 100%;
   justify-content: center;
+}
+
+
+.app-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  /* background: #fafafa; */
+}
+
+/* Main container */
+.app-container {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Title */
+.app-title {
+  margin-top: 0;
+}
+
+/* Top bar */
+.app-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-user {
+  color: #444;
+}
+
+/* Logout button */
+.app-logout {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #fff;
+}
+
+/* Main layout */
+.app-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Left column */
+.app-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Right column */
+.app-right {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  min-height: 70vh;
+}
+
+/* Section title */
+.app-section-title {
+  margin-top: 0;
+}
+
+/* Error */
+.app-error {
+  color: crimson;
+  margin-bottom: 10px;
 }

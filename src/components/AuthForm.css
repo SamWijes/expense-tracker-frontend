@@ -1,9 +1,10 @@
  .card {
-    padding: 16;
+    padding: 16px;
     border: 1px solid #ddd;
     border-radius: 10;
     max-width: 420;
-    width: 100%
+    align-self: center;
+    width: 50%
   }
   
   h2 {

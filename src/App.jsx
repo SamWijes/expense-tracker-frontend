@@ -26,7 +26,7 @@ export default function App() {
 
   function onAuthSuccess(userData) {
     setUser(userData);
-    loadExpenses(); // load ONLY after login/register
+    loadExpenses();
   }
 
   useEffect(() => {
@@ -43,25 +43,25 @@ export default function App() {
   }
 
   return (
-    <div style={styles.page}>
-      <div style={styles.container}>
-        <h1 style={{ marginTop: 0 }}>Expense Tracker</h1>
+    <div className="app-page">
+      <div className="app-container">
+        <h1 className="app-title">Expense Tracker</h1>
 
         {!getToken() ? (
           <AuthForm onAuth={onAuthSuccess} />
         ) : (
           <>
-            <div style={styles.topRow}>
-              <div style={{ color: "#444" }}>
+            <div className="app-top-row">
+              <div className="app-user">
                 Logged in{user?.email ? ` as ${user.email}` : ""}
               </div>
-              <button onClick={logout} style={styles.logout}>
+              <button onClick={logout} className="app-logout">
                 Logout
               </button>
             </div>
 
-            <div style={styles.layout}>
-              <div style={styles.left}>
+            <div className="app-layout">
+              <div className="app-left">
                 <ExpenseForm
                   onAdded={() =>
                     loadExpenses(filter.start || filter.end ? filter : {})
@@ -82,9 +82,9 @@ export default function App() {
                 />
               </div>
 
-              <div style={styles.right}>
-                <h2 style={{ marginTop: 0 }}>Expenses</h2>
-                {error && <div style={styles.error}>{error}</div>}
+              <div className="app-right">
+                <h2 className="app-section-title">Expenses</h2>
+                {error && <div className="app-error">{error}</div>}
                 <ExpenseList expenses={expenses} />
               </div>
             </div>
@@ -94,63 +94,3 @@ export default function App() {
     </div>
   );
 }
-const styles = {
-  page: {
-    minHeight: "100vh",
-    width: "80vw",
-    // display: "flex",
-    marginLeft: 'auto',
-    alignSelf: 'center',
-    justifyContent: "center",
-
-    padding: 24
-
-  },
-
-  container: {
-    width: "100%",
-    maxWidth: "1400px",
-    display: "flex",
-    flexDirection: "column",
-    gap: 20
-  },
-
-  topRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-
-  logout: {
-    padding: "10px 14px",
-    borderRadius: 8,
-    border: "1px solid #ccc",
-    cursor: "pointer"
-  },
-
-  layout: {
-    display: "grid",
-    gridTemplateColumns: "320px 1fr",
-    gap: 20,
-    alignItems: "start"
-  },
-
-  left: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 16
-  },
-
-  right: {
-    padding: 20,
-    border: "1px solid #ddd",
-    borderRadius: 12,
-    background: "#fff",
-    minHeight: "70vh"
-  },
-
-  error: {
-    color: "crimson",
-    marginBottom: 10
-  }
-};

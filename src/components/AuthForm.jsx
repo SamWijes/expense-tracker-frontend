@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { api, setToken } from "../api/client";
-import '.AuthForm.css'
+import './AuthForm.css'
 
 export default function AuthForm({ onAuth }) {
   const [mode, setMode] = useState("login"); // login | register

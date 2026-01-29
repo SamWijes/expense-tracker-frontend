@@ -2,7 +2,7 @@ import "./ExpenseList.css";
 
 export default function ExpenseList({ expenses }) {
   if (!expenses?.length) {
-    return <div style={styles.empty}>No expenses found.</div>;
+    return <div className="expense-list__empty">No expenses found.</div>;
   }
 
   return (
@@ -21,10 +21,3 @@ export default function ExpenseList({ expenses }) {
   );
 }
 
-const styles = {
-  empty: { padding: 16, color: "#666" },
-  grid: { display: "grid", gap: 12 },
-  card: { padding: 14, borderRadius: 10, border: "1px solid #ddd" },
-  title: { fontWeight: 600, marginBottom: 6 },
-  meta: { display: "flex", justifyContent: "space-between", color: "#555" }
-};
