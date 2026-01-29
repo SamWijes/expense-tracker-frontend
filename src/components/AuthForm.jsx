@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api, setToken } from "../api/client";
+import '.AuthForm.css'
 
 export default function AuthForm({ onAuth }) {
   const [mode, setMode] = useState("login"); // login | register
@@ -31,13 +32,13 @@ export default function AuthForm({ onAuth }) {
   }
 
   return (
-    <div style={styles.card}>
-      <h2 style={styles.h2}>{mode === "login" ? "Login" : "Register"}</h2>
+    <div className="card">
+      <h2>{mode === "login" ? "Login" : "Register"}</h2>
 
-      <form onSubmit={submit} style={styles.form}>
+      <form onSubmit={submit}>
         {mode === "register" && (
           <input
-            style={styles.input}
+            className="input"
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -45,49 +46,34 @@ export default function AuthForm({ onAuth }) {
         )}
 
         <input
-          style={styles.input}
+          className="input"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
-          style={styles.input}
+          className="input"
           placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        {error && <div style={styles.error}>{error}</div>}
+        {error && <div className="error">{error}</div>}
 
-        <button style={styles.button} disabled={loading}>
+        <button className="button" disabled={loading}>
           {loading ? "Please wait..." : mode === "login" ? "Login" : "Register"}
         </button>
       </form>
 
       <button
-        style={styles.link}
+        className="link"
         onClick={() => setMode(mode === "login" ? "register" : "login")}
       >
         Switch to {mode === "login" ? "Register" : "Login"}
       </button>
     </div>
+
   );
 }
-
-const styles = {
-  card: {
-    padding: 16,
-    border: "1px solid #ddd",
-    borderRadius: 10,
-    maxWidth: 420,
-    width: "100%"
-  },
-  h2: { margin: 0, marginBottom: 12 },
-  form: { display: "grid", gap: 10 },
-  input: { padding: 10, borderRadius: 8, border: "1px solid #ccc" },
-  button: { padding: 10, borderRadius: 8, border: "none", cursor: "pointer" },
-  link: { marginTop: 10, background: "transparent", border: "none", cursor: "pointer" },
-  error: { color: "crimson", fontSize: 14 }
-};

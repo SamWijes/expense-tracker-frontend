@@ -1,22 +1,25 @@
+import "./DateFilter.css";
+
 export default function DateFilter({ start, end, onChange, onApply, onClear }) {
   return (
-    <div style={styles.card}>
-      <h3 style={{ marginTop: 0 }}>Filter by Date</h3>
-      <div style={styles.row}>
-        <label style={styles.label}>
+    <div className="date-filter">
+      <h3 className="date-filter__title">Filter by Date</h3>
+
+      <div className="date-filter__row">
+        <label className="date-filter__label">
           Start
           <input
-            style={styles.input}
+            className="date-filter__input"
             type="date"
             value={start}
             onChange={(e) => onChange?.({ start: e.target.value, end })}
           />
         </label>
 
-        <label style={styles.label}>
+        <label className="date-filter__label">
           End
           <input
-            style={styles.input}
+            className="date-filter__input"
             type="date"
             value={end}
             onChange={(e) => onChange?.({ start, end: e.target.value })}
@@ -24,24 +27,14 @@ export default function DateFilter({ start, end, onChange, onApply, onClear }) {
         </label>
       </div>
 
-      <div style={styles.row2}>
-        <button style={styles.button} onClick={onApply}>
+      <div className="date-filter__actions">
+        <button className="date-filter__button" onClick={onApply}>
           Apply
         </button>
-        <button style={styles.button2} onClick={onClear}>
+        <button className="date-filter__button date-filter__button--clear" onClick={onClear}>
           Clear
         </button>
       </div>
     </div>
   );
 }
-
-const styles = {
-  card: { padding: 16, border: "1px solid #ddd", borderRadius: 10 },
-  row: { display: "flex", gap: 10, flexWrap: "wrap" },
-  row2: { display: "flex", gap: 10, marginTop: 10 },
-  label: { display: "grid", gap: 6, fontSize: 14 },
-  input: { padding: 10, borderRadius: 8, border: "1px solid #ccc" },
-  button: { padding: 10, borderRadius: 8, border: "none", cursor: "pointer" },
-  button2: { padding: 10, borderRadius: 8, border: "1px solid #ccc", cursor: "pointer" }
-};

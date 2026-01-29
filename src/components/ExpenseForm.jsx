@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api } from "../api/client";
+import "./ExpenseForm.css";
 
 export default function ExpenseForm({ onAdded }) {
   const [title, setTitle] = useState("");
@@ -40,44 +41,37 @@ export default function ExpenseForm({ onAdded }) {
   }
 
   return (
-    <div style={styles.card}>
-      <h3 style={{ marginTop: 0 }}>Add Expense</h3>
-      <form onSubmit={submit} style={styles.form}>
+    <div className="expense-form">
+      <h3 className="expense-form__title">Add Expense</h3>
+
+      <form onSubmit={submit} className="expense-form__form">
         <input
-          style={styles.input}
+          className="expense-form__input"
           placeholder="Title (e.g., Lunch)"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
 
         <input
-          style={styles.input}
+          className="expense-form__input"
           placeholder="Amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
 
         <input
-          style={styles.input}
+          className="expense-form__input"
           type="date"
           value={expenseDate}
           onChange={(e) => setExpenseDate(e.target.value)}
         />
 
-        {error && <div style={styles.error}>{error}</div>}
+        {error && <div className="expense-form__error">{error}</div>}
 
-        <button style={styles.button} disabled={loading}>
+        <button className="expense-form__button" disabled={loading}>
           {loading ? "Adding..." : "Add"}
         </button>
       </form>
     </div>
   );
 }
-
-const styles = {
-  card: {display:"flex",flexDirection:"column", padding: 16, border: "1px solid #ddd", borderRadius: 10 },
-  form: { display: "grid", gap: 10 },
-  input: { padding: 10, borderRadius: 8, border: "1px solid #ccc" },
-  button: { padding: 10, borderRadius: 8, border: "none", cursor: "pointer" },
-  error: { color: "crimson", fontSize: 14 }
-};

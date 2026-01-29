@@ -1,0 +1,47 @@
+.date-filter {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.date-filter__title {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.date-filter__row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.date-filter__label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.date-filter__input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.date-filter__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.date-filter__button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.date-filter__button--clear {
+  border: 1px solid #ccc;
+  background: transparent;
+}

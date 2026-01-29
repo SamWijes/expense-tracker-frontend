@@ -1,0 +1,41 @@
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.expense-form__title {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.expense-form__form {
+  display: grid;
+  gap: 10px;
+}
+
+.expense-form__input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.expense-form__button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.expense-form__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.expense-form__error {
+  color: crimson;
+  font-size: 14px;
+}
