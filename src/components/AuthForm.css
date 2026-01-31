@@ -1,13 +1,13 @@
- .card {
-    padding: 16px;
-    border: 1px solid #ddd;
-    border-radius: 10;
-    max-width: 420;
-    align-self: center;
-    width: 50%
-  }
-  
-  h2 {
+.card {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10;
+  max-width: 420;
+  align-self: center;
+  width: 50%;
+}
+
+h2 {
   margin: 0;
   margin-bottom: 12px;
 }

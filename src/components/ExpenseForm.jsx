@@ -3,8 +3,8 @@ import { api } from "../api/client";
 import "./ExpenseForm.css";
 
 export default function ExpenseForm({ onAdded }) {
-  const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
+  const [title, setTitle] = useState("Teast");
+  const [amount, setAmount] = useState("450");
   const [expenseDate, setExpenseDate] = useState(() => {
     const d = new Date();
     return d.toISOString().slice(0, 10);
@@ -12,6 +12,7 @@ export default function ExpenseForm({ onAdded }) {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [file,setFile]=useState({});
 
   async function submit(e) {
     e.preventDefault();
@@ -29,15 +30,23 @@ export default function ExpenseForm({ onAdded }) {
         title: title.trim(),
         amount: num,
         expense_date: expenseDate
-      });
+      },file);
+      // if(file) {
+      //   await api.uploadReceipt(file)
+      // }
       setTitle("");
       setAmount("");
+      setFile({});
       onAdded?.();
     } catch (err) {
+      console.log(err);
+      
       setError(err.message);
     } finally {
       setLoading(false);
     }
+
+
   }
 
   return (
@@ -67,7 +76,11 @@ export default function ExpenseForm({ onAdded }) {
         />
 
         {error && <div className="expense-form__error">{error}</div>}
-
+        <input   type="file"  onChange={(e) => {
+            setFile(e.target.files[0]);
+            console.log(file);
+          }}
+        />
         <button className="expense-form__button" disabled={loading}>
           {loading ? "Adding..." : "Add"}
         </button>

@@ -13,13 +13,15 @@ export default function App() {
   const [filter, setFilter] = useState({ start: "", end: "" });
 
   async function loadExpenses(params = {}) {
-    console.log("here");
+    
 
     setError("");
     try {
       const data = await api.getExpenses(params);
       setExpenses(data.expenses || []);
     } catch (err) {
+      console.log(err);
+      
       setError(err.message);
     }
   }

@@ -13,6 +13,11 @@ export default function ExpenseList({ expenses }) {
 
           <div className="expense-card__meta">
             <span>Rs. {Number(e.amount).toFixed(2)}</span>
+          
+            
+            {e.receipt&&<button onClick={()=>{
+              
+            }}>Receipt</button>}
             <span>{String(e.expense_date).slice(0, 10)}</span>
           </div>
         </div>
