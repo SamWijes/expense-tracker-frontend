@@ -28,12 +28,14 @@ export default function App() {
 
   function onAuthSuccess(userData) {
     setUser(userData);
+    localStorage.setItem("user",JSON.stringify(userData))
     loadExpenses();
   }
 
   useEffect(() => {
     async function run() {
       await loadExpenses();
+      setUser(JSON.parse(localStorage.getItem("user")))
     }
     run();
   }, [])
@@ -42,6 +44,7 @@ export default function App() {
     clearToken();
     setUser(null);
     setExpenses([]);
+    localStorage.removeItem("user")
   }
 
   return (

@@ -12,7 +12,7 @@ export default function ExpenseForm({ onAdded }) {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [file,setFile]=useState({});
+  const [file,setFile]=useState();
 
   async function submit(e) {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function ExpenseForm({ onAdded }) {
       // }
       setTitle("");
       setAmount("");
-      setFile({});
+      setFile();
       onAdded?.();
     } catch (err) {
       console.log(err);
@@ -78,7 +78,7 @@ export default function ExpenseForm({ onAdded }) {
         {error && <div className="expense-form__error">{error}</div>}
         <input   type="file"  onChange={(e) => {
             setFile(e.target.files[0]);
-            console.log(file);
+            // console.log(file);
           }}
         />
         <button className="expense-form__button" disabled={loading}>

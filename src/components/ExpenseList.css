@@ -32,3 +32,20 @@
   color: #555;
   font-size: 14px;
 }
+.popReceipt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.418);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.popReceipt >img{
+  height: 50%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 400px 200px #f8f6f6;
+}

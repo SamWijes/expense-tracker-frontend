@@ -21,15 +21,15 @@ async function request(path, { method = "GET", body,file, auth = false } = {}) {
     method:method
     
   }
-  // if (body && !file) config.data = body;
-  // if (file) {
+  if (body && !file) config.data = body;
+  if (file) {
     const formData=new FormData()
     formData.append('image',file);
     formData.append('title',body.title)
     formData.append('amount',body.amount)
     formData.append('expense_date',body.expense_date)
     config.data=formData;
-  // }
+  }
   if (auth) {
     const token = getToken();
     if (token) config.headers ={Authorization:`Bearer ${token}`};

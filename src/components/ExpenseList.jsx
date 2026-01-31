@@ -1,6 +1,10 @@
+import { useState } from "react";
 import "./ExpenseList.css";
 
+
 export default function ExpenseList({ expenses }) {
+  const [show,setShow]=useState(false);
+  const [recptSrc,setRecptSrc]=useState();
   if (!expenses?.length) {
     return <div className="expense-list__empty">No expenses found.</div>;
   }
@@ -17,11 +21,22 @@ export default function ExpenseList({ expenses }) {
             
             {e.receipt&&<button onClick={()=>{
               
-            }}>Receipt</button>}
+              setRecptSrc(e.receipt)
+              setShow(!show)
+            
+            
+            }}>Receipt</button>}  
             <span>{String(e.expense_date).slice(0, 10)}</span>
+
+            
           </div>
         </div>
       ))}
+      {show &&(
+              <div onClick={()=>setShow(!show)} className="popReceipt">
+                <img   src={"http://localhost:4000/" +recptSrc }alt="popup" />
+              </div>
+            )}
     </div>
   );
 }
